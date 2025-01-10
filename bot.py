@@ -204,7 +204,7 @@ async def handler(event):
                 ],
                 [
                     Button.inline(bot_text["d"], b'd'),
-                ]
+                ],
                 [
                     Button.inline(bot_text["cancel"], b'cancel')
                 ]
