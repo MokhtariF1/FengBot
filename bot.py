@@ -554,7 +554,7 @@ async def handler(event):
                     Button.inline(bot_text["cancel"], b'cancel')
                 ]
             ]
-            r = await conv.send_message(bot_text["question_14"], buttons=q4_buttons)
+            r = await conv.send_message(bot_text["question_14"], buttons=q14_buttons)
             q14_score = 0
             q14_response = await conv.wait_event(events.CallbackQuery())
             q14_response = q14_response.data
