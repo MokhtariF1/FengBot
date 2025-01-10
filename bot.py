@@ -69,6 +69,7 @@ async def handler(event):
                 await bot.delete_messages(user_id, r.id)
                 return
             else:
+                await bot.delete_messages(user_id, r.id)
                 q1_score = q1_scores[q1_response.decode()]
             q2_scores = {
                 "a": 10,
@@ -98,6 +99,7 @@ async def handler(event):
                 await bot.delete_messages(user_id, r.id)
                 return
             else:
+                await bot.delete_messages(user_id, r.id)
                 q2_score = q2_scores[q2_response.decode()]
             q3_scores = {
                 "a": 10,
@@ -127,6 +129,7 @@ async def handler(event):
                 await bot.delete_messages(user_id, r.id)
                 return
             else:
+                await bot.delete_messages(user_id, r.id)
                 q3_score = q3_scores[q3_response.decode()]
             q4_scores = {
                 "a": 10,
@@ -156,6 +159,7 @@ async def handler(event):
                 await bot.delete_messages(user_id, r.id)
                 return
             else:
+                await bot.delete_messages(user_id, r.id)
                 q4_score = q4_scores[q4_response.decode()]
             q5_scores = {
                 "a": 10,
@@ -185,6 +189,7 @@ async def handler(event):
                 await bot.delete_messages(user_id, r.id)
                 return
             else:
+                await bot.delete_messages(user_id, r.id)
                 q5_score = q5_scores[q5_response.decode()]
             q6_scores = {
                 "a": 10,
@@ -218,6 +223,7 @@ async def handler(event):
                 await bot.delete_messages(user_id, r.id)
                 return
             else:
+                await bot.delete_messages(user_id, r.id)
                 q6_score = q6_scores[q6_response.decode()]
             q7_scores = {
                 "a": 2,
@@ -247,6 +253,7 @@ async def handler(event):
                 await bot.delete_messages(user_id, r.id)
                 return
             else:
+                await bot.delete_messages(user_id, r.id)
                 q7_score = q7_scores[q7_response.decode()]
             q8_scores = {
                 "a": 10,
@@ -272,6 +279,7 @@ async def handler(event):
                 await bot.delete_messages(user_id, r.id)
                 return
             else:
+                await bot.delete_messages(user_id, r.id)
                 q8_score = q8_scores[q8_response.decode()]
             await event.reply(bot_text["next_questions"])
             q9_scores = {
@@ -326,6 +334,7 @@ async def handler(event):
                 await bot.delete_messages(user_id, r.id)
                 return
             else:
+                await bot.delete_messages(user_id, r.id)
                 q9_score = q9_scores[q9_response.decode()]
             q10_scores = {
                 "a": 4,
@@ -379,6 +388,7 @@ async def handler(event):
                 await bot.delete_messages(user_id, r.id)
                 return
             else:
+                await bot.delete_messages(user_id, r.id)
                 q10_score = q10_scores[q10_response.decode()]
             q11_scores = {
                 "a": 4,
@@ -432,6 +442,7 @@ async def handler(event):
                 await bot.delete_messages(user_id, r.id)
                 return
             else:
+                await bot.delete_messages(user_id, r.id)
                 q11_score = q11_scores[q11_response.decode()]
             q12_scores = {
                 "a": 4,
@@ -485,6 +496,7 @@ async def handler(event):
                 await bot.delete_messages(user_id, r.id)
                 return
             else:
+                await bot.delete_messages(user_id, r.id)
                 q12_score = q12_scores[q12_response.decode()]
             q13_scores = {
                 "a": 4,
@@ -538,6 +550,7 @@ async def handler(event):
                 await bot.delete_messages(user_id, r.id)
                 return
             else:
+                await bot.delete_messages(user_id, r.id)
                 q13_score = q13_scores[q13_response.decode()]
             q14_scores = {
                 "a": 2,
@@ -563,6 +576,7 @@ async def handler(event):
                 await bot.delete_messages(user_id, r.id)
                 return
             else:
+                await bot.delete_messages(user_id, r.id)
                 q14_score = q14_scores[q14_response.decode()]
         score = q1_score + q2_score + q3_score + q4_score + q5_score + q6_score + q7_score + q8_score + q9_score + q10_score + q11_score + q12_score + q13_score + q14_score
         test_result = None
@@ -572,10 +586,10 @@ async def handler(event):
             test_result = "معمولی و احتیاج به مشاوره"
         else:
             test_result = "عالی، احتیاج به فنگشویی و درمانگری ندارید، فقط تقویت المان ها"
-        print(cur.execute(f"SELECT * FROM users WHERE user_id={user_id}"))
+        print(cur.execute(f"SELECT * FROM users WHERE user_id={user_id}")).fetchone()
         cur.execute(f"UPDATE users SET score = {score} AND level='{test_result}' WHERE user_id={user_id}")
         db.commit()
-        print(cur.execute(f"SELECT * FROM users WHERE user_id={user_id}"))
+        print(cur.execute(f"SELECT * FROM users WHERE user_id={user_id}")).fetchone()
         await event.reply(bot_text["result"].format(score=score, test_result=test_result))
 if __name__ == "__main__":
     bot.run_until_disconnected()
