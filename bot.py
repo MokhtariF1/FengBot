@@ -586,10 +586,10 @@ async def handler(event):
             test_result = "معمولی و احتیاج به مشاوره"
         else:
             test_result = "عالی، احتیاج به فنگشویی و درمانگری ندارید، فقط تقویت المان ها"
-        print(cur.execute(f"SELECT * FROM users WHERE user_id={user_id}")).fetchone()
+        print(cur.execute(f"SELECT * FROM users WHERE user_id={user_id}").fetchone())
         cur.execute(f"UPDATE users SET score = {score} AND level='{test_result}' WHERE user_id={user_id}")
         db.commit()
-        print(cur.execute(f"SELECT * FROM users WHERE user_id={user_id}")).fetchone()
+        print(cur.execute(f"SELECT * FROM users WHERE user_id={user_id}").fetchone())
         await event.reply(bot_text["result"].format(score=score, test_result=test_result))
 if __name__ == "__main__":
     bot.run_until_disconnected()
