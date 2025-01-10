@@ -20,7 +20,7 @@ async def handler(event):
     if text == "/start":
         find_user = cur.execute(f"SELECT * FROM users WHERE user_id = {user_id}").fetchone()
         if find_user is None:
-            cur.execute(f"INSERT INTO users VALUES ({user_id}, {0}, {'آزمون نداده'})")
+            cur.execute(f"INSERT INTO users VALUES ({user_id}, {0}, '{'آزمون نداده'}')")
             db.commit()
             buttons = [
                 Button.text(bot_text["start_test"], resize=True)
