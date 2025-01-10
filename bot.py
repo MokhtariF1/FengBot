@@ -18,7 +18,7 @@ async def handler(event):
     text = event.raw_text
     user_id = event.sender_id
     if text == "/start":
-        find_user = cur.execute(f"SELECT * FROM users WHERE user_id = {user_id}")
+        find_user = cur.execute(f"SELECT * FROM users WHERE user_id = {user_id}").fetchone()
         if find_user is None:
             cur.execute(f"INSERT INTO users VALUES ({user_id}, {0}, {'آزمون نداده'})")
             db.commit()
