@@ -4,7 +4,7 @@ import config
 from telethon.errors import TimedOutError
 
 
-bot = TelegramClient("bot", config.api_id, config.api_hash, proxy=None if config.proxy is False else config.proxy_address)
+bot = TelegramClient("robot", config.api_id, config.api_hash, proxy=None if config.proxy is False else config.proxy_address)
 print("connecting...")
 bot.start(bot_token=config.bot_token)
 print("connected!")
@@ -567,11 +567,13 @@ async def handler(event):
         score = q1_score + q2_score + q3_score + q4_score + q5_score + q6_score + q7_score + q8_score + q9_score + q10_score + q11_score + q12_score + q13_score + q14_score
         test_result = None
         if score < 40:
-            test_result = "خیلی بد"
+            test_result = "خیلی بد حتما پاکسازی عمیق و فنگشویی انجام شود"
         elif score >= 40 and score < 70:
             test_result = "معمولی و احتیاج به مشاوره"
         else:
             test_result = "عالی، احتیاج به فنگشویی و درمانگری ندارید، فقط تقویت المان ها"
+        cur.execute(f"UPDATE users SET score = {score} AND level='{test_result}' WHERE user_id={user_id}")
+        db.commit()
         await event.reply(bot_text["result"].format(score=score, test_result=test_result))
 if __name__ == "__main__":
     bot.run_until_disconnected()
