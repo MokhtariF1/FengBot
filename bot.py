@@ -573,5 +573,5 @@ async def handler(event):
         else:
             test_result = "عالی، احتیاج به فنگشویی و درمانگری ندارید، فقط تقویت المان ها"
         await event.reply(bot_text["result"].format(score=score, test_result=test_result))
-
-bot.run_until_disconnected()
+if __name__ == "__main__":
+    bot.run_until_disconnected()
