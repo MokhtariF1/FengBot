@@ -6,7 +6,7 @@ from telethon.errors import TimedOutError
 
 bot = TelegramClient("bot", config.api_id, config.api_hash, proxy=None if config.proxy is False else config.proxy_address)
 print("connecting...")
-bot.start(bot_token=config.bot_text)
+bot.start(bot_token=config.bot_token)
 print("connected!")
 db = connect('bot.db')
 cur = db.cursor()
