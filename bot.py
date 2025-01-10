@@ -587,7 +587,7 @@ async def handler(event):
         else:
             test_result = "عالی، احتیاج به فنگشویی و درمانگری ندارید، فقط تقویت المان ها"
         print(cur.execute(f"SELECT * FROM users WHERE user_id={user_id}").fetchone())
-        cur.execute(f"UPDATE users SET score = {score} AND level='{test_result}' WHERE user_id={user_id}")
+        cur.execute(f"UPDATE users SET score = {score},level='{test_result}' WHERE user_id={user_id}")
         db.commit()
         print(cur.execute(f"SELECT * FROM users WHERE user_id={user_id}").fetchone())
         await event.reply(bot_text["result"].format(score=score, test_result=test_result))
