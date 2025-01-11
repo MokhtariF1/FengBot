@@ -222,7 +222,7 @@ async def handler(event):
             q7_scores = {
                 "a": 2,
                 "b": 5,
-                "c": 2,
+                "c": 10,
             }
             q7_buttons = [
                 [
