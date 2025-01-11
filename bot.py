@@ -35,7 +35,8 @@ async def handler(event):
                 await event.reply(bot_text["no_score_start"], buttons=buttons)
             else:
                 buttons = [
-                    Button.inline(bot_text["information"], b'information'),
+                    [Button.inline(bot_text["re_test"], b'start_test')],
+                    [Button.inline(bot_text["information"], b'information')]
                 ]
                 await event.reply(bot_text["start"], buttons=buttons)
     # elif text == bot_text["start_test"]:
