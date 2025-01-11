@@ -40,7 +40,7 @@ async def handler(event):
                 await event.reply(bot_text["start"], buttons=buttons)
     elif text == bot_text["start_test"]:
         await event.reply(bot_text["start_test_text"])
-        async with bot.conversation(user_id) as conv:
+        async with bot.conversation(user_id, timeout=1000) as conv:
             q1_scores = {
                 "a": 10,
                 "b": 5,
