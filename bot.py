@@ -38,10 +38,6 @@ async def handler(event):
                     Button.inline(bot_text["information"], b'information'),
                 ]
                 await event.reply(bot_text["start"], buttons=buttons)
-    elif text == bot_text["information"]:
-        find_user = cur.execute(f"SELECT * FROM users WHERE user_id = {user_id}").fetchone()
-        text = f"اطلاعات شما:\nامتیاز: {find_user[1]}\nنتیجه آزمون شما:{find_user[2]}"
-        await event.reply(text)
     elif text == bot_text["start_test"]:
         await event.reply(bot_text["start_test_text"])
         async with bot.conversation(user_id) as conv:
@@ -595,5 +591,11 @@ async def handler(event):
         db.commit()
         print(cur.execute(f"SELECT * FROM users WHERE user_id={user_id}").fetchone())
         await event.reply(bot_text["result"].format(score=score, test_result=test_result))
+@bot.on(events.CallbackQuery(data=b'information'))
+async def information(event):
+    user_id = event.sender_id
+    find_user = cur.execute(f"SELECT * FROM users WHERE user_id = {user_id}").fetchone()
+    text = f"اطلاعات شما:\nامتیاز: {find_user[1]}\nنتیجه آزمون شما:{find_user[2]}"
+    await event.reply(text)
 if __name__ == "__main__":
     bot.run_until_disconnected()
