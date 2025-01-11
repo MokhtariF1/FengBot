@@ -35,7 +35,7 @@ async def handler(event):
                 await event.reply(bot_text["no_score_start"], buttons=buttons)
             else:
                 buttons = [
-                    Button.text(bot_text["information"], resize=True),
+                    Button.inline(bot_text["information"], b'information'),
                 ]
                 await event.reply(bot_text["start"], buttons=buttons)
     elif text == bot_text["information"]:
@@ -43,11 +43,6 @@ async def handler(event):
         text = f"اطلاعات شما:\nامتیاز: {find_user[1]}\nنتیجه آزمون شما:{find_user[2]}"
         await event.reply(text)
     elif text == bot_text["start_test"]:
-        find_user = cur.execute(f"SELECT * FROM users WHERE user_id={user_id}").fetchone()
-        score = find_user[1]
-        if score !=0:
-            await event.reply(bot_text["before_test"])
-            return
         await event.reply(bot_text["start_test_text"])
         async with bot.conversation(user_id) as conv:
             q1_scores = {
@@ -237,7 +232,7 @@ async def handler(event):
             q7_scores = {
                 "a": 2,
                 "b": 5,
-                "c": 2,
+                "c": 10,
             }
             q7_buttons = [
                 [
